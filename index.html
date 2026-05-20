@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa del Curso: IA y Gemini para Documentalistas de Medios (ATEI)</title>
+    <style>
+        :root {
+            --primary-color: #1e3a34; /* Verde bosque profundo */
+            --secondary-color: #c9a66b; /* Dorado sutil */
+            --text-dark: #2d2a26; /* Gris carbón suave */
+            --bg-light: #fcfbfa; /* Blanco roto cálido */
+            --bg-card: #ffffff;
+            --bg-accent: #f4f1ea; /* Crema suave para bloques de índice */
+            --bg-practical: #eef5f2; /* Verde muy claro para prácticas */
+            --border-color: #e3dfd8;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Banner de Cabecera Profesional */
+        .header-banner {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 40px 30px;
+            border-bottom: 5px solid var(--secondary-color);
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(30, 58, 52, 0.1);
+        }
+
+        .header-banner .institution {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--secondary-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .header-banner h1 {
+            font-size: 1.85rem;
+            margin: 0 0 15px 0;
+            font-weight: 800;
+            line-height: 1.25;
+            letter-spacing: -0.5px;
+        }
+
+        .header-banner .directors {
+            font-size: 1.05rem;
+            color: #e3dfd8;
+            margin: 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 15px;
+        }
+
+        .header-banner .directors strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        /* Títulos de secciones */
+        h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 12px;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            color: var(--primary-color);
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 16px;
+            color: #4a453f;
+            text-align: justify;
+        }
+
+        /* Tabla de metadatos */
+        .meta-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .meta-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.95rem;
+        }
+
+        .meta-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .meta-table td.label {
+            font-weight: 700;
+            color: var(--primary-color);
+            width: 30%;
+            background-color: rgba(30, 58, 52, 0.02);
+        }
+
+        /* Bloque del Índice Interactivo */
+        .index-box {
+            background-color: var(--bg-accent);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.01);
+        }
+
+        .index-box h2 {
+            margin-top: 0;
+            border-left: none;
+            padding-left: 0;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .index-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        @media (min-width: 650px) {
+            .index-list {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+        }
+
+        .index-list li {
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .index-list li::before {
+            content: "•";
+            color: var(--secondary-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+            position: absolute;
+            left: 15px;
+        }
+
+        .index-list a {
+            color: #3e5c54;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .index-list a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        /* Tarjetas de Sesión */
+        .session-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 35px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            scroll-margin-top: 20px;
+        }
+
+        .session-title {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 8px; /* Reducido ligeramente para acomodar al profesor */
+            font-weight: 700;
+        }
+        
+        /* Nuevo estilo para los profesores */
+        .session-professor {
+            font-size: 0.95rem;
+            color: #55504a;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .session-professor strong {
+            color: var(--primary-color);
+            margin-right: 8px;
+            font-weight: 600;
+        }
+
+        .session-professor .badge {
+            background-color: var(--bg-accent);
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        .session-desc {
+            font-style: italic;
+            color: #55504a;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            background-color: var(--bg-light);
+            padding: 12px 15px;
+            border-left: 3px solid var(--secondary-color);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .practical-box {
+            background-color: var(--bg-practical);
+            border: 1px solid #d4ede2;
+            border-radius: 6px;
+            padding: 18px;
+            margin-top: 20px;
+        }
+
+        .practical-box strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            font-weight: 800;
+        }
+
+        ul {
+            margin-top: 0;
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 6px;
+            color: #4a453f;
+        }
+
+        /* Pie de página */
+        footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.85rem;
+            color: #8c857b;
+            padding-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-banner">
+            <div class="institution">Asociación de las Televisiones Educativas y Culturales Iberoamericanas (ATEI)</div>
+            <h1>Programa de Formación Especializada:<br>Inteligencia Artificial y Gemini para Documentalistas de Medios</h1>
+            <div class="directors">
+                Dirección del Curso: <strong>Ignacio Raussell</strong><br>
+                <span style="font-size: 0.95rem; opacity: 0.9; display: inline-block; margin-top: 8px;">
+                    Coordinación: <strong>Miquel Francés</strong>, <strong>Juan Alvarado</strong> y <strong>Pere Vila</strong>
+                </span>
+            </div>
+        </div>
+
+        <h2>Información General del Curso</h2>
+        <table class="meta-table">
+            <tr>
+                <td class="label">Organiza:</td>
+                <td>ATEI (Asociación de las Televisiones Educativas y Culturales Iberoamericanas)</td>
+            </tr>
+            <tr>
+                <td class="label">Dirección Académica:</td>
+                <td>Ignacio Raussell</td>
+            </tr>
+            <tr>
+                <td class="label">Coordinación:</td>
+                <td>Miquel Francés, Juan Alvarado y Pere Vila</td>
+            </tr>
+            <tr>
+                <td class="label">Perfil Destinatario:</td>
+                <td>Documentalistas, archiveros y profesionales de gestión de contenidos en radio, televisión y plataformas de comunicación.</td>
+            </tr>
+            <tr>
+                <td class="label">Metodología:</td>
+                <td>Combinación de explicaciones teóricas estructuradas con bloques de experimentación práctica adaptada al día a día.</td>
+            </tr>
+            <tr>
+                <td class="label">Estructura y Duración:</td>
+                <td>8 sesiones formativas teórico-prácticas (2 horas por sesión). Total: 16 horas lectivas.</td>
+            </tr>
+            <tr>
+                <td class="label">Inicio del curso:</td>
+                <td>Mediados de octubre de 2026</td>
+            </tr>
+            <tr>
+                <td class="label">Días lectivos:</td>
+                <td>Lunes y Martes</td>
+            </tr>
+            <tr>
+                <td class="label">Horario:</td>
+                <td>16:30 a 18:30 horas</td>
+            </tr>
+        </table>
+
+        <div class="index-box">
+            <h2>Índice del Programa</h2>
+            <ul class="index-list">
+                <li><a href="#sesion1">Sesión 1: Introducción y Entorno Gemini</a></li>
+                <li><a href="#sesion2">Sesión 2: Transcripción de Audio y Voz</a></li>
+                <li><a href="#sesion3">Sesión 3: Metadatos y Catalogación</a></li>
+                <li><a href="#sesion4">Sesión 4: Colecciones y Búsqueda Avanzada</a></li>
+                <li><a href="#sesion5">Sesión 5: Resúmenes y Apoyo Editorial</a></li>
+                <li><a href="#sesion6">Sesión 6: Traducción y Fuentes Internacionales</a></li>
+                <li><a href="#sesion7">Sesión 7: Análisis Visual (Imagen y Vídeo)</a></li>
+                <li><a href="#sesion8">Sesión 8: Uso Responsable, Legalidad y Derechos</a></li>
+            </ul>
+        </div>
+
+        <h2>Detalle del Programa Académico</h2>
+
+        <div class="session-block" id="sesion1">
+            <div class="session-title">Sesión 1: Introducción a la IA Generativa y el Entorno de Gemini (2 horas)</div>
+            <div class="session-professor">
+                <strong>Profesor/a:</strong> <span class="badge">Pendiente de concretar</span>
+            </div>
+            <div class="session-desc">
+                Una aproximación genérica para situar a los profesionales de la documentación en el ecosistema actual de la inteligencia artificial generativa, entendiendo qué pueden y qué no pueden hacer estas herramientas.
+            </div>
+            <h3>Subapartados Teóricos:</h3>
+            <ul>
+                <li>Conceptos básicos sobre modelos de lenguaje aplicados al entorno mediático.</li>
+                <li>La interfaz de Gemini: navegación, configuraciones de entorno y organización del espacio de trabajo.</li>
+                <li>Anatomía de un buen prompt documental: contexto, asignación de roles e instrucciones precisas.</li>
+                <li>Errores frecuentes, alucinaciones y la absoluta necesidad de supervisión humana constante.</li>
+            </ul>
+            <div class="practical-box">
+                <strong>Apartado Práctico:</strong>
+                Configuración guiada del entorno personal de Gemini, exploración interactiva de la interfaz y diseño de plantillas iniciales de prompting para búsquedas y verificación en el contexto informativo.
+            </div>
+        </div>
+
+        <div class="session-block" id="sesion2">
+            <div class="session-title">Sesión 2: Transcripción Automática de Audio y Gestión de Voz (2 horas)</div>
+            <div class="session-professor">
+                <strong>Profesor/a:</strong> <span class="badge">Pendiente de concretar</span>
+            </div>
+            <div class="session-desc">
+                Técnicas esenciales para la optimización de flujos de trabajo de audio mediante soluciones accesibles de transcripción automática y subtitulado en medios de comunicación.
+            </div>
+            <h3>Subapartados Teóricos:</h3>
+            <ul>
+                <li>Modelos de transcripción de voz a texto incorporados en los ecosistemas multimodales de IA.</li>
+                <li>Control de fiabilidad lingüística y corrección automatizada de errores tipográficos u ortográficos.</li>
+                <li>Diarización de hablantes: principios teóricos para la identificación y etiquetado automático de oradores.</li>
+            </ul>
+            <div class="practical-box">
+                <strong>Apartado Práctico:</strong>
+                Subida de un archivo de audio a Gemini, generación automatizada de la transcripción textual y aplicación de criterios de evaluación de resultados de las transcripciones obtenidas.
+            </div>
+        </div>
+
+        <div class="session-block" id="sesion3">
+            <div class="session-title">Sesión 3: Análisis de Metadatos y Catalogación Inteligente (2 horas)</div>
+            <div class="session-professor">
+                <strong>Profesor/a:</strong> <span class="badge">Pendiente de concretar</span>
+            </div>
+            <div class="session-desc">
+                Cómo delegar en la inteligencia artificial la generación de descripciones, propuestas taxonómicas automáticas y la redacción de fichas completas para agilizar la catalogación diaria.
+            </div>
+            <h3>Subapartados Teóricos:</h3>
+            <ul>
+                <li>Automatización en la asignación de palabras clave y campos mínimos de metadatos.</li>
+                <li>Estrategias para la extracción automática de entidades (nombres, cargos, lugares y organizaciones).</li>
+                <li>Uso complementario de esquemas abiertos estándares en entornos audiovisuales y broadcasting (como PBCore).</li>
+            </ul>
+            <div class="practical-box">
+                <strong>Apartado Práctico:</strong>
+                Ejercicio de envío de una transcripción textual a Gemini para solicitarle que genere propuestas de metadatos, resúmenes tipificados y etiquetas normalizadas según las necesidades del archivo.
+            </div>
+        </div>
+
+        <div class="session-block" id="sesion4">
+            <div class="session-title">Sesión 4: Gestión de Colecciones Documentales y Búsqueda Avanzada (2 horas)</div>
+            <div class="session-professor">
+                <strong>Profesor/a:</strong> <span class="badge">Pendiente de concretar</span>
+            </div>
+            <div class="session-desc">
+                Uso y viabilidad de soluciones tipo NotebookLM, Claude Projects o Gemini con análisis de archivos para trabajar de manera inteligente sobre bases de datos existentes y conjuntos de fuentes reunidas.
+            </div>
+            <h3>Subapartados Teóricos:</h3>
+            <ul>
+                <li>Carga y preparación de fuentes documentales: limpieza básica de datos, formatos recomendados y ordenación de documentos.</li>
+                <li>Trabajo con cuadernos documentales integrados desde Google Drive, Google Sheets o documentos de texto de forma unificada.</li>
+                <li>Distinción crítica entre realizar una "consulta inteligente" conversacional y disponer de una arquitectura estable de archivo estructurado.</li>
+            </ul>
+            <div class="practical-box">
+                <strong>Apartado Práctico:</strong>
+                Transformación de una hoja de cálculo o listado desordenado de archivo en una base consultable mediante la carga estructurada de fuentes en un cuaderno documental de NotebookLM.
+            </div>
+        </div>
+
+        <div class="session-block" id="sesion5">
+            <div class="session-title">Sesión 5: Resúmenes Avanzados, Sinopsis y Apoyo Editorial (2 horas)</div>
+            <div class="session-professor">
+                <strong>Profesor/a:</strong> <span class="badge">Pendiente de concretar</span>
+            </div>
+            <div class="session-desc">
+                Métodos para acelerar los usos de apoyo a la investigación periodística, preparación de materiales y síntesis masiva de textos y documentos para redactores y productores.
+            </div>
+            <h3>Subapartados Teóricos:</h3>
+            <ul>
+                <li>Técnicas de compresión e identificación de ideas nucleares en textos extensos, crónicas y diarios oficiales.</li>
+                <li>Detección de huecos de información, creación de cronologías y ordenación temporal de hechos históricos.</li>
+                <li>Comparación de versiones y respuestas entre herramientas ante el mismo conjunto de documentos fuente.</li>
+            </ul>
+            <div class="practical-box">
+                <strong>Apartado Práctico:</strong>
+                Diseño práctico de una plantilla avanzada de prompting optimizada para la creación de resúmenes ejecutivos, cronologías periodísticas y apoyo a la verificación de información.
+            </div>
+        </div>
+
+        <div class="session-block" id="sesion6">
+            <div class="session-title">Sesión 6: Traducción Automática y Tratamiento de Fuentes Internacionales (2 horas)</div>
+            <div class="session-professor">
+                <strong>Profesor/a:</strong> <span class="badge">Pendiente de concretar</span>
+            </div>
+            <div class="session-desc">
+                Derribar las barreras idiomáticas en las redacciones pequeñas permitiendo el acceso ágil a fuentes, agencias de noticias extranjeras y documentación internacional con un riguroso criterio de control de calidad.
+            </div>
+            <h3>Subapartados Teóricos:</h3>
+            <ul>
+                <li>Capacidades lingüísticas y de comprensión semántica contextual de los modelos de IA generalistas.</li>
+                <li>Identificación de sesgos lingüísticos, giros culturales y matices terminológicos en la traducción automatizada.</li>
+                <li>Técnicas para la contrastación de fuentes traducidas aplicadas a la investigación en el ámbito de los medios informativos.</li>
+            </ul>
+            <div class="practical-box">
+                <strong>Apartado Práctico:</strong>
+                Procesamiento y traducción de documentación internacional compleja en Gemini, extrayendo de forma automatizada glosarios de términos técnicos y resúmenes de entidades en español.
+            </div>
+        </div>
+
+        <div class="session-block" id="sesion7">
+            <div class="session-title">Sesión 7: Análisis Visual Multimodal (Imagen Fija y Vídeo) (2 horas)</div>
+            <div class="session-professor">
+                <strong>Profesor/a:</strong> Francesc Tarrés
+            </div>
+            <div class="session-desc">
+                Aproximación práctica a la explotación de capacidades multimodales en imágenes y vídeo, identificando con precisión qué puede resolverse con IA generalista y qué requiere software específico.
+            </div>
+            <h3>Subapartados Teóricos:</h3>
+            <ul>
+                <li>Límites del análisis fino de imagen y vídeo a gran escala, detección masiva de rostros y escenas en entornos generalistas.</li>
+                <li>Introducción a herramientas y flujos abiertos complementarios para la transcodificación, mejora básica, escalado y superresolución visual (como Shutter Encoder o Video2X).</li>
+                <li>Criterios de evaluación técnica: cuándo la IA multimodal generalista es suficiente y cuándo es imprescindible un sistema de gestión audiovisual empresarial (MAM).</li>
+            </ul>
+            <div class="practical-box">
+                <strong>Apartado Práctico:</strong>
+                Carga de un clip audiovisual breve para experimentar capacidades de extracción de información visual, estructuración por bloques cronológicos y diseño de un flujo mínimo viable de documentación asistida.
+            </div>
+        </div>
+
+        <div class="session-block" id="sesion8">
+            <div class="session-title">Sesión 8: Uso Responsable, Aspectos Legales y Derechos en la IA Documental (2 horas)</div>
+            <div class="session-professor">
+                <strong>Profesor/a:</strong> <span class="badge">Pendiente de concretar</span>
+            </div>
+            <div class="session-desc">
+                Estudio crítico de los principios éticos y regulatorios imprescindibles para garantizar la trazabilidad profesional y la mitigación de riesgos editoriales o legales en un medio local.
+            </div>
+            <h3>Subapartados Teóricos:</h3>
+            <ul>
+                <li>Garantías profesionales: privacidad institucional, protección de datos y confidencialidad en entornos de nubes generalistas públicas.</li>
+                <li>Propiedad intelectual, derechos de explotación masiva de archivos audiovisuales, control de derechos de terceros y copyright.</li>
+                <li>Trazabilidad, transparencia de los datos y criterios deontológicos para la validación de materiales generados por IA.</li>
+                <li>La imperiosa necesidad de un protocolo de uso interno adaptado para coordinar el criterio y evitar errores operativos o legales.</li>
+            </ul>
+            <div class="practical-box">
+                <strong>Apartado Práctico:</strong>
+                Diseño estructurado del borrador para un protocolo interno básico de documentación asistida por IA para el medio, delimitando de forma exacta los flujos de validación humana obligatoria.
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2026 Asociación de las Televisiones Educativas y Culturales Iberoamericanas (ATEI).</p>
+            <p>Dirección Académica: Ignacio Raussell | Coordinación: Miquel Francés, Juan Alvarado y Pere Vila.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
