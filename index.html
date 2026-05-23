@@ -14,6 +14,9 @@
             --bg-accent: #f4f1ea; /* Crema suave para bloques de índice */
             --bg-practical: #eef5f2; /* Verde muy claro para prácticas */
             --border-color: #e3dfd8;
+            --bg-pending: #fffcf5; /* Fondo diferencial para sesiones pendientes */
+            --border-pending: #ebd9c8;
+            --accent-pending: #d09c65;
         }
 
         *, *::before, *::after {
@@ -209,6 +212,28 @@
             scroll-margin-top: 20px;
         }
 
+        /* Estilos para sesiones pendientes */
+        .session-pending {
+            background-color: var(--bg-pending);
+            border-color: var(--border-pending);
+            border-left: 5px solid var(--accent-pending);
+        }
+
+        .session-pending .session-title {
+            color: #a87b51;
+        }
+
+        .pending-notice {
+            font-style: italic;
+            color: #8c7b66;
+            text-align: center;
+            padding: 20px;
+            background: rgba(208, 156, 101, 0.1);
+            border-radius: 6px;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+
         .session-title {
             font-size: 1.25rem;
             color: var(--primary-color);
@@ -361,6 +386,9 @@
                 <li><a href="#sesion6">Sesión 6: Traducción y Fuentes Internacionales</a></li>
                 <li><a href="#sesion7">Sesión 7: Análisis Visual (Imagen y Vídeo)</a></li>
                 <li><a href="#sesion8">Sesión 8: Verificación, Ética y Derechos en IA</a></li>
+                <li><a href="#sesion9">Sesión 9: Pendiente de concreción</a></li>
+                <li><a href="#sesion10">Sesión 10: Pendiente de concreción</a></li>
+                <li><a href="#sesion11">Sesión 11: Pendiente de concreción</a></li>
             </ul>
         </div>
 
@@ -410,7 +438,7 @@
         <div class="session-block" id="sesion3">
             <div class="session-title">Sesión 3: Análisis de Metadatos y Catalogación Inteligente (2 horas)</div>
             <div class="session-professor">
-                <strong>Profesor/a:</strong> <span class="badge">Pendiente de concretar</span>
+                <strong>Profesor/a:</strong> Eduardo Lleida, Universidad de Zaragoza
             </div>
             <div class="session-desc">
                 Cómo delegar en la inteligencia artificial la generación de descripciones, propuestas taxonómicas automáticas y la redacción de fichas completas para agilizar la catalogación diaria.
@@ -430,7 +458,7 @@
         <div class="session-block" id="sesion4">
             <div class="session-title">Sesión 4: Gestión de Colecciones Documentales y Búsqueda Avanzada (2 horas)</div>
             <div class="session-professor">
-                <strong>Profesor/a:</strong> <span class="badge">Pendiente de concretar</span>
+                <strong>Profesor/a:</strong> Arnau Serra Cayuela (Nextret)
             </div>
             <div class="session-desc">
                 Uso y viabilidad de soluciones tipo NotebookLM, Claude Projects o Gemini con análisis de archivos para trabajar de manera inteligente sobre bases de datos existentes y conjuntos de fuentes reunidas.
@@ -450,7 +478,7 @@
         <div class="session-block" id="sesion5">
             <div class="session-title">Sesión 5: Resúmenes Avanzados, Sinopsis y Apoyo Editorial (2 horas)</div>
             <div class="session-professor">
-                <strong>Profesor/a:</strong> <span class="badge">Pendiente de concretar</span>
+                <strong>Profesores:</strong> Teresa Barceló y Gonzalo Fuentes, Universidad CEU San Pablo
             </div>
             <div class="session-desc">
                 Métodos para acelerar los usos de apoyo a la investigación periodística, preparación de materiales y síntesis masiva de textos y documentos para redactores y productores.
@@ -525,6 +553,36 @@
             <div class="practical-box">
                 <strong>Apartado Práctico:</strong>
                 Ejercicio de verificación documental: utilización de herramientas de IA y búsqueda avanzada para contrastar una información, validar una imagen de origen dudoso y redactar un informe de transparencia sobre el proceso de validación.
+            </div>
+        </div>
+
+        <div class="session-block session-pending" id="sesion9">
+            <div class="session-title">Sesión 9: [Temática pendiente de concreción y detalle]</div>
+            <div class="session-professor">
+                <strong>Profesor/a:</strong> Lorena Cano (Universidad de Valencia)
+            </div>
+            <div class="pending-notice">
+                Los contenidos teóricos y prácticos específicos de esta sesión están actualmente en fase de diseño y se detallarán próximamente.
+            </div>
+        </div>
+
+        <div class="session-block session-pending" id="sesion10">
+            <div class="session-title">Sesión 10: [Temática pendiente de concreción y detalle]</div>
+            <div class="session-professor">
+                <strong>Profesor/a:</strong> José Luis Ortega (Estructure)
+            </div>
+            <div class="pending-notice">
+                Los contenidos teóricos y prácticos específicos de esta sesión están actualmente en fase de diseño y se detallarán próximamente.
+            </div>
+        </div>
+
+        <div class="session-block session-pending" id="sesion11">
+            <div class="session-title">Sesión 11: [Temática pendiente de concreción y detalle]</div>
+            <div class="session-professor">
+                <strong>Profesor/a:</strong> Paz Orero (Institut Valencià de Cultura)
+            </div>
+            <div class="pending-notice">
+                Los contenidos teóricos y prácticos específicos de esta sesión están actualmente en fase de diseño y se detallarán próximamente.
             </div>
         </div>
 
